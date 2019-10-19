@@ -4,6 +4,7 @@ Game::Game() : window(sf::VideoMode(WIDTH, HEIGHT), "Arcade Space Game")
 	srand(time(NULL));
 	this->window.setFramerateLimit(60);
 	this->dt = 0;
+	arial.loadFromFile("arial.ttf");
 }
 
 void Game::run()
@@ -19,18 +20,19 @@ void Game::run()
 
 void Game::processEvents()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || (player.position.y > 0)) {
-		player.position.y=-100;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+		player.speedVec.y -= 150;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || (player.position.y > HEIGHT)) {
-		player.position.y=+100;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) ) {
+		player.speedVec.y += 150;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || (player.position.x > 0)) {
-		player.position.x=-100;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		player.speedVec.x -=150;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || (player.position.x > WIDTH)) {
-		player.position.x=+100;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+		player.speedVec.x += 150;
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) { player.speedVec = sf::Vector2f(10, 10); }
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{ 
 	window.close(); 
@@ -54,9 +56,13 @@ void Game::update(float dt)
 
 void Game::render()
 {
-	window.clear();
-	player.draw(window);
-	//draw()
+	std::ostringstream test;
+	test <<"dT:\n" << dt << "\nSpeedvec:\n" << player.speedVec.x << "  |  " << player.speedVec.y<< "\nPlayerPos:\n"<<player.position.x<<"  |  "<<player.position.y;
+	sf::String temp(test.str());
+	sf::Text temphelp(temp, arial, 20);
 
+	window.clear();
+	window.draw(temphelp);
+	player.draw(window);
 	window.display();
 }

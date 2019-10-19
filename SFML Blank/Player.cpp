@@ -5,11 +5,15 @@ sf::Sprite Player::getSprite()
 }
 void Player::update(float dt)
 {
-	position.x = position.x + 1 * dt;
-	position.y = position.y + 1 * dt;
+	position.x = position.x + speedVec.x * dt;
+	position.y = position.y + speedVec.y * dt;
+	speedVec.x *= 0.85;
+	speedVec.y *= 0.85;
+	shape.setPosition(position);
 }
 
 void Player::draw(sf::RenderWindow& window)
 {
+
 	window.draw(shape);
 }

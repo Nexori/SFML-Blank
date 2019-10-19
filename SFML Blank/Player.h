@@ -11,11 +11,11 @@ private:
 public:
 	Player() 
 	{
-		this->hp = 100; 
-		this->speedVec = sf::Vector2f(0, 0);
-		this->direciton = sf::Vector2f(1, 0);
-		this->position = sf::Vector2f(WIDTH/2, 50);
-		this->shape = sf::CircleShape(25);
+		hp = 100; 
+		speedVec = sf::Vector2f(0, 0);
+		direciton = sf::Vector2f(1, 0);
+		position = sf::Vector2f(WIDTH/2, 50);
+		shape = sf::CircleShape(25);
 	}
 	~Player() {};
 	float hp;
