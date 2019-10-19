@@ -1,18 +1,24 @@
 #pragma once
-
+#include "SFML/Main.hpp"
+#include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
-#define WIDTH 1400
-#define HEIGHT 800
+#include "Player.h"
+#include <iostream>
 
 class Game
 {
 public:
 	Game();
 	void run();
+	sf::Clock clock;
+	double dt;
 private:
+	Player player;
 	void processEvents();
-	void update();
+	void update(float dt);
 	void render();
 	sf::RenderWindow window;
+
+
 };
 
